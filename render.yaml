@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: shl-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      # Add any secrets here if you later need them
+    healthCheckPath: "/health"
+    autoDeploy: true
+
+  - type: web
+    name: shl-frontend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run frontend/app.py --server.port $PORT --server.address 0.0.0.0"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      - key: BACKEND_URL
+        # When backend is live, Render will give you a URL like https://shl-backend.onrender.com
+        value: "https://shl-backend.onrender.com"
+    autoDeploy: true

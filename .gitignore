@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.pyo
+
+# Envs / local
+.venv/
+env/
+venv/
+.idea/
+.vscode/
+.DS_Store
+
+# Jupyter & outputs
+.ipynb_checkpoints/
+*.ipynb_convert/
+*.checkpoints/
+*.log
+
+# Data & artifacts (keep the JSONs you truly need)
+backend/data/catalog/*.tmp
+backend/data/catalog/*.bak
+backend/data/artifacts/*.tmp
+backend/data/train/*.tmp
+
+# OS
+Thumbs.db
