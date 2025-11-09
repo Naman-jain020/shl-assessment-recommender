@@ -15,8 +15,18 @@ from backend.recommender.features import (
 )
 from backend.recommender.utils import extract_requirements
 from sentence_transformers import SentenceTransformer
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="SHL Assessment Recommender API")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or restrict to your Streamlit Render URL later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ---- Load catalog and models ----
 CATALOG = load_catalog()                 # must be list[dict]; len = N
